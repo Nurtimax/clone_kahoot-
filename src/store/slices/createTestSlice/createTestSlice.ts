@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
+  IAddQuestionItemPayloadType,
   ICreateTest,
   ICreateTestItem,
   IExampleDataType,
@@ -61,6 +62,17 @@ const createTestSlice = createSlice({
       { payload }: PayloadAction<IExampleDataType>
     ) => {
       state.data!.chooseOption = payload;
+    },
+    addQuestionItem: (
+      state,
+      { payload }: PayloadAction<IAddQuestionItemPayloadType>
+    ) => {
+      state.data?.items?.map((item) => {
+        if (item.id === payload.id) {
+          item.chooseOption.push(payload.newQuestionItem);
+        }
+        return item;
+      });
     },
   },
 });
