@@ -1,12 +1,9 @@
 import TextField from "@mui/material/TextField";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
-import VisibilityIcon from "@mui/icons-material/Visibility";
 import Button from "@mui/material/Button";
 import {
-  ButtonStyled,
-  ContainerStyled,
-  InputEmailStyled,
+ 
   SpanStyled,
 } from "../../styles";
 import { Box, Card, CardContent, Container, Grid } from "@mui/material";
