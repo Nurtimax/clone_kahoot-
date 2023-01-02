@@ -77,3 +77,26 @@ export const ImageSkeletStyled = styled.div`
     height: 30px;
   }
 `;
+
+
+
+export const InputEmailStyled=styled.div`
+display: grid;
+grid-row-gap: 20px;
+`
+export const ButtonStyled=styled.div`
+display:flex;
+justify-content:center;
+`
+export const ContainerStyled=styled.div`
+background-color:#F8F8FF ;
+box-shadow: rgba(0,0,0,0.4) 0  5px 4px;
+width: 400px;
+margin: 0 auto;
+padding:40px;
+margin-top:20px;
+`
+export const SpanStyled=styled.span`
+padding-left: 20px;
+
+`
