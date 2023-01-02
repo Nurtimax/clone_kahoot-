@@ -10,14 +10,18 @@ const SettingTest = () => {
   const items = useAppSelector((state) => state.createTest.data?.items);
   const findedData = items?.find((item) => item.id === id);
 
-  console.log(findedData);
+  if (!findedData) {
+    return <h1>Loading...</h1>
+  }
+
+  
 
   return (
     <SettingTestStyled>
       <Container>
         <Grid container>
           <Grid item xs={2.5}>
-            <AddSettingQuestion id={id} />
+            <AddSettingQuestion id={id} findedData={findedData} />
           </Grid>
           <Grid item xs={7}>
             <Card className="setting_cards">

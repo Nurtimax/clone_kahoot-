@@ -8,12 +8,12 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import React, { MouseEvent, useState } from "react";
+import React, { MouseEvent, MouseEventHandler, useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import { useAppDispatch } from "../../../../hook/react-redux";
-// import { IAddSettingQuestionType } from "../../../../types";
+import { IAddSettingQuestionType } from "../../../../types";
 import { createTestAction } from "../../../../store/slices/createTestSlice/createTestSlice";
-// import uuid from "react-uuid";
+import uuid from "react-uuid";
 import { exampleData } from "../../../../data";
 import QuizMenuItem from "./menu_items/QuizMenuItem";
 import { IExampleDataType } from "../../../../types";
@@ -42,17 +42,6 @@ const AddSettingQuestionMenu = () => {
 
   const dispatch = useAppDispatch();
 
-  // const addQuestionCard = ({ id }: IAddSettingQuestionType) => {
-  //   if (id) {
-  //     dispatch(
-  //       createTestAction.getQuestionValue({
-  //         id,
-  //         newQuestion: { id: uuid(), options: [], questionName: "" },
-  //       })
-  //     );
-  //   }
-  // };
-
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -65,6 +54,13 @@ const AddSettingQuestionMenu = () => {
     return () => {
       dispatch(createTestAction.changeChooseOption(data));
     };
+  };
+
+  const addQuestionCard = () => {
+    return () => {
+      console.log(true);
+      
+    }    
   };
 
   return (
@@ -95,7 +91,10 @@ const AddSettingQuestionMenu = () => {
                 <Grid container spacing={2.2}>
                   {exampleData.map((data) => (
                     <Grid item xs={12} key={data.id} sx={{ width: 80 }}>
-                      <Item onMouseEnter={handleOver(data)}>
+                      <Item
+                        onMouseEnter={handleOver(data)}
+                        onClick={addQuestionCard()}
+                      >
                         <Grid container>
                           <Grid item xs={2} className="item">
                             <img src={data.img} alt="" />

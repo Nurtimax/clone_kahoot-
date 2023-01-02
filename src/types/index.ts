@@ -12,7 +12,6 @@ export interface ITargetCardItemData {
   image: string;
 }
 
-
 export interface ICreateTest {
   data?: ICreateTestDataItem;
 }
@@ -29,6 +28,7 @@ export interface ICreateTestItem {
   question?: ICreateTestItemQuestion[];
   cardTitle: string;
   dateNow: string;
+  chooseOption: IExampleDataType[];
 }
 
 export interface ICreateTestItemQuestion {
@@ -62,6 +62,7 @@ export interface ITabPanelProps {
 
 export interface IAddSettingQuestionType {
   id: string | undefined;
+  findedData: ICreateTestItem
 }
 
 export interface IExampleDataType {
@@ -77,4 +78,9 @@ export interface IExampleDataOptionType {
   id: number;
   bg: string;
   title: string;
+}
+
+export interface IAddQuestionItemPayloadType {
+  id: string;
+  newQuestionItem: IExampleDataType;
 }
