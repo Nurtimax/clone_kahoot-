@@ -37,7 +37,7 @@ const Item = styled(Paper)(({ theme }) => ({
   },
 }));
 
-const AddSettingQuestionMenu = () => {
+const AddSettingQuestionMenu = ({ id }: { id: string }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const dispatch = useAppDispatch();
@@ -56,11 +56,10 @@ const AddSettingQuestionMenu = () => {
     };
   };
 
-  const addQuestionCard = () => {
+  const addQuestionCard = (data: IExampleDataType) => {
     return () => {
-      console.log(true);
-      
-    }    
+      console.log(data);
+    };
   };
 
   return (
@@ -93,7 +92,7 @@ const AddSettingQuestionMenu = () => {
                     <Grid item xs={12} key={data.id} sx={{ width: 80 }}>
                       <Item
                         onMouseEnter={handleOver(data)}
-                        onClick={addQuestionCard()}
+                        onClick={addQuestionCard(data)}
                       >
                         <Grid container>
                           <Grid item xs={2} className="item">

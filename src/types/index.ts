@@ -61,7 +61,7 @@ export interface ITabPanelProps {
 }
 
 export interface IAddSettingQuestionType {
-  id: string | undefined;
+  id: string;
   findedData: ICreateTestItem
 }
 
