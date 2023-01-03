@@ -10,6 +10,7 @@ const SettingTest = () => {
   const items = useAppSelector((state) => state.createTest.data?.items);
   const findedData = items?.find((item) => item.id === id);
 
+  
   if (!findedData) {
     return <h1>Loading...</h1>;
   }
