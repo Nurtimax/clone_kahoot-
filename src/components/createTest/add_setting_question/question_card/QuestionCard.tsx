@@ -1,18 +1,33 @@
-import { Box, Grid, IconButton, Paper, styled, Typography } from "@mui/material";
-import React from "react";
+import {
+  Box,
+  Grid,
+  IconButton,
+  Paper,
+  styled,
+  Typography,
+} from "@mui/material";
+import React, { FC } from "react";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import QuestionCardImage from "./QuestionCardImage";
+import { IExampleDataType } from "../../../../types";
 
 const Item = styled(Paper)(({ theme }) => ({
-    background: theme.palette.mode === "dark" ? "#1a2027" : "#f9f8f8",
-    ...theme.typography.body2,
-    padding: theme.spacing(.8),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  }));
+  background: theme.palette.mode === "dark" ? "#1a2027" : "#f9f8f8",
+  ...theme.typography.body2,
+  padding: theme.spacing(0.8),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
 
-const QuestionCard = () => {
+const QuestionCard: FC<IExampleDataType> = ({
+  description,
+  id,
+  img,
+  options,
+  title,
+  work,
+}) => {
   return (
     <>
       <Box
@@ -102,18 +117,11 @@ const QuestionCard = () => {
             </Box>
             <Box sx={{ p: 1 }}>
               <Grid container spacing={1}>
-                <Grid item xs={6}>
-                  <Item></Item>
-                </Grid>
-                <Grid item xs={6}>
-                  <Item></Item>
-                </Grid>
-                <Grid item xs={6}>
-                  <Item></Item>
-                </Grid>
-                <Grid item xs={6}>
-                  <Item></Item>
-                </Grid>
+                {options.map((option) => (
+                  <Grid item xs={6}>
+                    <Item></Item>
+                  </Grid>
+                ))}
               </Grid>
             </Box>
           </Paper>

@@ -39,7 +39,6 @@ const createTestSlice = createSlice({
         if (state.data?.items?.length) {
           state.data.items = payload;
         }
-        // state.data?.items?.push(...payload)
       } else {
         state.data?.items?.push(payload);
         console.log("not array");
@@ -69,7 +68,11 @@ const createTestSlice = createSlice({
     ) => {
       state.data?.items?.map((item) => {
         if (item.id === payload.id) {
-          item.chooseOption.push(payload.newQuestionItem);
+          if (Array.isArray(item.chooseOption)) {
+            item.chooseOption.push(payload.newQuestionItem);
+          } else {
+            item.chooseOption = [payload.newQuestionItem];
+          }
         }
         return item;
       });
