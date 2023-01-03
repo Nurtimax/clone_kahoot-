@@ -14,7 +14,6 @@ const SettingTest = () => {
     return <h1>Loading...</h1>;
   }
 
-
   return (
     <SettingTestStyled>
       <Container>
