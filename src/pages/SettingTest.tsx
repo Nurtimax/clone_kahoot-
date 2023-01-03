@@ -11,17 +11,15 @@ const SettingTest = () => {
   const findedData = items?.find((item) => item.id === id);
 
   if (!findedData) {
-    return <h1>Loading...</h1>
+    return <h1>Loading...</h1>;
   }
-
-  
 
   return (
     <SettingTestStyled>
       <Container>
         <Grid container>
           <Grid item xs={2.5}>
-            <AddSettingQuestion id={id} findedData={findedData} />
+            <AddSettingQuestion findedData={findedData} />
           </Grid>
           <Grid item xs={7}>
             <Card className="setting_cards">

@@ -61,8 +61,8 @@ export interface ITabPanelProps {
 }
 
 export interface IAddSettingQuestionType {
-  id: string | undefined;
-  findedData: ICreateTestItem
+  id: string;
+  findedData: ICreateTestItem;
 }
 
 export interface IExampleDataType {
@@ -84,3 +84,15 @@ export interface IAddQuestionItemPayloadType {
   id: string;
   newQuestionItem: IExampleDataType;
 }
+
+// //
+
+export interface IToggleSliceType {
+  data: IToggleSliceDataType;
+}
+
+export interface IToggleSliceDataType {
+  anchorEl: null | typeof Element;
+}
+
+
