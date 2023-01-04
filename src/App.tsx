@@ -5,7 +5,7 @@ import Header from "./layout/Header";
 import CreateTest from "./pages/CreateTest";
 import Home from "./pages/Home";
 import Play from "./pages/Play";
-import SettingTest from "./pages/SettingTest";
+import SettingTest from "./pages/setting_test/SettingTest";
 import SingIn from "./pages/SingIn";
 import SingUp from "./pages/SingUp";
 import { createTestAction } from "./store/slices/createTestSlice/createTestSlice";
@@ -23,7 +23,7 @@ const App = () => {
   }, [data, dispatch]);
 
   if (isLoading) {
-    return <h1>Loading...</h1>
+    return <h1>Loading...</h1>;
   }
 
   return (

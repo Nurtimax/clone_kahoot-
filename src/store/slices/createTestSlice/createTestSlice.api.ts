@@ -23,8 +23,19 @@ export const createTestSliceApi = createApi({
       }),
       invalidatesTags: ["createTest"],
     }),
+    putCreateData: build.mutation<undefined, any>({
+      query: (item) => ({
+        url: `item/${item.id}`,
+        method: "PUT",
+        body: item.newData,
+      }),
+      invalidatesTags: ["createTest"],
+    }),
   }),
 });
 
-export const { useGetTestDataQuery, usePostCreatedDataMutation } =
-  createTestSliceApi;
+export const {
+  useGetTestDataQuery,
+  usePostCreatedDataMutation,
+  usePutCreateDataMutation,
+} = createTestSliceApi;

@@ -118,7 +118,7 @@ const QuestionCard: FC<IExampleDataType> = ({
             <Box sx={{ p: 1 }}>
               <Grid container spacing={1}>
                 {options.map((option) => (
-                  <Grid item xs={6}>
+                  <Grid item xs={6} key={option.id}>
                     <Item></Item>
                   </Grid>
                 ))}

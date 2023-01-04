@@ -1,4 +1,4 @@
-import { AppBar, Card, CardContent, Divider } from "@mui/material";
+import { AppBar, Card, CardContent, Divider, Grid } from "@mui/material";
 import { FC } from "react";
 import { ICreateTestItem } from "../../../types";
 import AddSettingQuestionMenu from "./question-menu/AddSettingQuestionMenu";
@@ -11,20 +11,24 @@ interface AddSettingQuestionProps {
 const AddSettingQuestion: FC<AddSettingQuestionProps> = ({
   findedData,
 }: AddSettingQuestionProps) => {
-  const { chooseOption = [] } = findedData;
-  console.log(chooseOption);
+  const {  question = [] } = findedData;
+  console.log(question);
 
   return (
     <>
       <Card className="setting_cards">
         <AppBar position="relative" color="secondary">
-          <AddSettingQuestionMenu />
+          <AddSettingQuestionMenu  />
         </AppBar>
         <Divider />
         <CardContent>
-          {chooseOption.map((option) => (
-            <QuestionCard key={option.id} {...option} />
-          ))}
+          <Grid container spacing={2}>
+            {question.map((option) => (
+              <Grid item key={option.id}>
+                <QuestionCard {...option} />
+              </Grid>
+            ))}
+          </Grid>
         </CardContent>
       </Card>
     </>
