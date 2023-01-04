@@ -25,7 +25,7 @@ export interface ICreateTestItem {
   id: string;
   completed: boolean;
   isCorrect: string;
-  question?: ICreateTestItemQuestion[];
+  question?: IExampleDataType[];
   cardTitle: string;
   dateNow: string;
   chooseOption: IExampleDataType[];
@@ -51,7 +51,7 @@ export interface ICreateTestActionType {
 
 export interface IGetQuestionValueType {
   id: string;
-  newQuestion: ICreateTestItemQuestion;
+  newQuestion: IExampleDataType;
 }
 
 export interface ITabPanelProps {

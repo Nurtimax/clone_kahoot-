@@ -17,7 +17,8 @@ import { exampleData } from "../../../../data";
 import QuizMenuItem from "./menu_items/QuizMenuItem";
 import { IExampleDataType } from "../../../../types";
 import { useParams } from "react-router-dom";
-import { toggleSliceAction } from "../../../../store/slices/toggleSlices";
+import { usePutCreateDataMutation } from "../../../../store/slices/createTestSlice/createTestSlice.api";
+import uuid from "react-uuid";
 
 const Item = styled(Paper)(({ theme }) => ({
   background: theme.palette.mode === "dark" ? "#1a2027" : "#fff",
@@ -39,21 +40,25 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const AddSettingQuestionMenu = () => {
+  const [putData] = usePutCreateDataMutation();
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const dispatch = useAppDispatch();
   const { id } = useParams();
 
-  const { anchorEl } = useAppSelector((state) => state.toggles.data);
+  const items = useAppSelector((state) => state.createTest.data?.items);
+  const findedData = items?.find((item) => item.id === id);
 
-  const dispatch = useAppDispatch();
+  if (!findedData) {
+    return <h1>Loading...</h1>;
+  }
 
-  const handleClose = (e: MouseEvent<Element>) => {
-    dispatch(toggleSliceAction.toggleAnchorEl(Element));
+  const handleClose = (e: MouseEvent<HTMLElement>) => {
+    setAnchorEl(null);
   };
 
-  const handleMenu = (e: MouseEvent<Element>) => {
-    dispatch(toggleSliceAction.toggleAnchorEl(Element));
+  const handleMenu = (e: MouseEvent<HTMLElement>) => {
+    setAnchorEl(e.currentTarget);
   };
-
-  console.log(typeof Element);
 
   const handleOver = (data: IExampleDataType) => {
     return () => {
@@ -63,6 +68,23 @@ const AddSettingQuestionMenu = () => {
 
   const addQuestionCard = (data: IExampleDataType) => {
     return () => {
+      console.log(findedData);
+      if (findedData?.question) {
+        const newQuestion = [...findedData?.question, { ...data, id: uuid() }];
+        console.log(newQuestion, "first question");
+        putData({
+          id,
+          newData: { ...findedData, question: newQuestion },
+        });
+      } else {
+        const newQuestion = findedData?.question?.push(data);
+        console.log(newQuestion, "second question");
+        console.log({
+          id,
+          newData: { ...findedData, question: newQuestion },
+        });
+      }
+
       if (id) {
         const questionCard: IAddQuestionItemPayloadType = {
           id,
@@ -72,8 +94,6 @@ const AddSettingQuestionMenu = () => {
       }
     };
   };
-
-  console.log(anchorEl);
 
   return (
     <>
@@ -88,7 +108,7 @@ const AddSettingQuestionMenu = () => {
         </IconButton>
         <Menu
           id="basic-menu"
-          // anchorEl={anchorEl}
+          anchorEl={anchorEl}
           open={Boolean(anchorEl)}
           onClose={handleClose}
           anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
